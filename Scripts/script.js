@@ -64,8 +64,11 @@ const showWinner = (winner) => {
     disableBoxes();
 }
 
+
+
  //check winner function
 const checkWinner = () => {
+    let isDraw = true;
     for(let pattern of winPatterns){
         
         //printing those value into individual variable
@@ -79,8 +82,17 @@ const checkWinner = () => {
                 showWinner(pos1Val);
             }
         }
-
+        boxes.forEach(box => {
+            if (box.innerText === "") {
+                isDraw = false;
+            }
+        });
+        if (isDraw) {
+            msg.innerText = "It's a Draw! Play Again.";
+            msgContainer.classList.remove("hide");
+            disableBoxes();
     }
+}
 }
 
 newGameBtn.addEventListener("click", resetGame);
